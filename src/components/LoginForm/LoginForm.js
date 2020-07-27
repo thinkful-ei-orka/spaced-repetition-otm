@@ -3,6 +3,8 @@ import { Input, Label } from '../Form/Form'
 import AuthApiService from '../../services/auth-api-service'
 import UserContext from '../../contexts/UserContext'
 import Button from '../Button/Button'
+import './LoginForm.css'
+import { FaSpinner } from 'react-icons/fa'
 
 class LoginForm extends Component {
   static defaultProps = {
@@ -11,11 +13,12 @@ class LoginForm extends Component {
 
   static contextType = UserContext
 
-  state = { error: null }
+  state = { error: null, loading: false }
 
   firstInput = React.createRef()
 
   handleSubmit = ev => {
+    this.setState({ laoding: true })
     ev.preventDefault()
     const { username, password } = ev.target
 
@@ -32,7 +35,7 @@ class LoginForm extends Component {
         this.props.onLoginSuccess()
       })
       .catch(res => {
-        this.setState({ error: res.error })
+        this.setState({ error: res.error, laoding: false })
       })
   }
 
@@ -42,6 +45,7 @@ class LoginForm extends Component {
 
   render() {
     const { error } = this.state
+    const loading = this.state.loading;
     return (
       <form
         className='LoginForm'
@@ -50,7 +54,7 @@ class LoginForm extends Component {
         <div role='alert'>
           {error && <p>{error}</p>}
         </div>
-        <div>
+
           <Label htmlFor='login-username-input'>
             Username
           </Label>
@@ -59,9 +63,8 @@ class LoginForm extends Component {
             id='login-username-input'
             name='username'
             required
-          />
-        </div>
-        <div>
+        />
+        
           <Label htmlFor='login-password-input'>
             Password
           </Label>
@@ -71,10 +74,13 @@ class LoginForm extends Component {
             type='password'
             required
           />
-        </div>
-        <Button type='submit'>
+
+        {!loading && <Button type='submit'>
           Login
-        </Button>
+        </Button>}
+        {loading && <Button type='submit' disabled>
+        <FaSpinner />
+        </Button>}
       </form>
     )
   }

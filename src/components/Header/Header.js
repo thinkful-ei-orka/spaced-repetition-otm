@@ -1,57 +1,76 @@
-import React, { Component } from 'react'
+
+import React, { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import TokenService from '../../services/token-service'
 import UserContext from '../../contexts/UserContext'
 import './Header.css'
+import { GiHamburgerMenu } from 'react-icons/gi';
 
-class Header extends Component {
-  static contextType = UserContext
+const Header = () => {
+  const [show, setShow] = useState(false); //hook for conditionally controlling the navbar links depending on screen sizes. 
 
-  handleLogoutClick = () => {
-    this.context.processLogout()
+  const context = useContext(UserContext)
+
+  function handleLogoutClick() {
+    context.processLogout()
   }
 
-  renderLogoutLink() {
-    return (
-      <div>
-        <span>
-          {this.context.user.name}
-        </span>
-        <nav>
-          <Link
-            onClick={this.handleLogoutClick}
-            to='/login'>
-            Logout
-          </Link>
-        </nav>
-      </div>
-    )
-  }
+  const nav_class = `nav-links ${!show ? "hideMenu" : ""}`;
 
-  renderLoginLink() {
+
+  function renderLogoutLink() {
     return (
       <nav>
-        <Link to='/login'>Login</Link>
-        {' '}
-        <Link to='/register'>Sign up</Link>
+        <div className={nav_class}>
+          <Link
+            className="navlink user-name"
+            to="#">
+            {context.user.name}
+          </Link>
+          <Link
+            className="navlink"
+            onClick={handleLogoutClick}
+            to='/login'>
+            Logout
+            </Link>
+
+        </div>
+        <div className="icon">
+          {!show ? <GiHamburgerMenu onClick={(e) => setShow(!show)} /> : <div onClick={(e) => setShow(!show)}>X</div>}
+        </div>
       </nav>
     )
   }
 
-  render() {
+  function renderLoginLink() {
     return (
-      <header>
-        <h1>
-          <Link to='/'>
-            Spaced repetition
-          </Link>
-        </h1>
-        {TokenService.hasAuthToken()
-          ? this.renderLogoutLink()
-          : this.renderLoginLink()}
-      </header>
-    );
+
+      <nav>
+        <div className={nav_class}>
+          <Link className="navlink" to='/login'>Login</Link>
+          {' '}
+          <Link className="navlink" to='/register'>Sign up</Link>
+        </div>
+        <div className="icon">
+          {!show ? <GiHamburgerMenu onClick={(e) => setShow(!show)} /> : <div onClick={(e) => setShow(!show)}>X</div>}
+        </div>
+      </nav>
+
+    )
   }
+
+  return (
+    <header className="header">
+      <h3>
+        <Link className="h1" to='/'>
+          Spaced repetition
+            </Link>
+      </h3>
+      {TokenService.hasAuthToken()
+        ? renderLogoutLink()
+        : renderLoginLink()}
+    </header>
+  );
 }
 
 export default Header
