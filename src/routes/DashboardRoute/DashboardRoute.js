@@ -6,15 +6,10 @@ import './Dashboard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 
-class DashboardRoute extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      language: null,
-      words: null
-    }
-  }
+import WordsContext from '../../contexts/WordsContext';
 
+class DashboardRoute extends Component {
+  static contextType = WordsContext;
 
   componentDidMount() {
     fetch(`${config.API_ENDPOINT}/language`, {
@@ -28,7 +23,7 @@ class DashboardRoute extends Component {
         }
       })
       .then(json => {
-        this.setState({
+        this.context.setContext({
           language: json.language,
           words: json.words
         })
@@ -41,14 +36,15 @@ class DashboardRoute extends Component {
     let totalScore = 0;
     let words = [];
 
-    if (this.state.language) {
-      languageName = this.state.language.name;
-      totalScore = this.state.language.total_score;
-
+    if (this.context.language) {
+      languageName = this.context.language.name;
+      totalScore = this.context.language.total_score;
     }
 
-    if (this.state.words) {
-      this.state.words.forEach((word, i) => {
+    console.log(this.context);
+
+    if (this.context.words) {
+      this.context.words.forEach((word, i) => {
         words.push(
           {
             key: word.id,
@@ -65,7 +61,7 @@ class DashboardRoute extends Component {
       })
     }
 
-    console.log(this.state);
+    console.log(this.context);
 
     return (
       <>

@@ -17,11 +17,8 @@ export class WordsProvider extends Component {
     }
   }
 
-  componentDidMount() {
-  }
-
   setContext = (newContext) => {
-    this.setState({newContext})
+    this.setState(newContext)
   }
 
   render() {

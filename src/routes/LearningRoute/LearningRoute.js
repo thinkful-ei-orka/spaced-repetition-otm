@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import config from '../../config';
 import TokenService from '../../services/token-service';
 
+import WordsContext from '../../contexts/WordsContext';
+
 
 class LearningRoute extends Component {
   constructor(props) {
@@ -12,6 +14,8 @@ class LearningRoute extends Component {
       guess: '',
     }
   }
+
+  static contextType = WordsContext;
 
   handleChange = (value) => {
     this.setState({guess: value});
