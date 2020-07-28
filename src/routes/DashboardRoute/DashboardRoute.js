@@ -12,23 +12,7 @@ class DashboardRoute extends Component {
   static contextType = WordsContext;
 
   componentDidMount() {
-    fetch(`${config.API_ENDPOINT}/language`, {
-      headers: {
-        'authorization': `bearer ${TokenService.getAuthToken()}`,
-      },
-    })
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
-      })
-      .then(json => {
-        this.context.setContext({
-          language: json.language,
-          words: json.words
-        })
-      })
-      .catch(e => console.log(e));
+    this.context.updateContext();
   }
 
   render() {

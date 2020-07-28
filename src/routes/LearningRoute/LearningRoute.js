@@ -4,13 +4,11 @@ import TokenService from '../../services/token-service';
 
 import WordsContext from '../../contexts/WordsContext';
 
-
 class LearningRoute extends Component {
   constructor(props) {
     super(props);
     this.state = {
       word: null,
-      totalScore: null,
       guess: '',
     }
   }
@@ -51,6 +49,8 @@ class LearningRoute extends Component {
   }
 
   componentDidMount() {
+    this.context.updateContext();
+
     fetch(`${config.API_ENDPOINT}/language/head`, {
       headers: {
         'authorization': `bearer ${TokenService.getAuthToken()}`,
@@ -63,16 +63,32 @@ class LearningRoute extends Component {
       })
       .then(json => {
         this.setState({word: json.word});
+        console.log(this.state);
       })
       .catch(e => console.log(e));
   }
 
   render() {
+    let word = '';
+    let correct_count;
+    let incorrect_count;
+    let total_score;
+
+    if (this.state.word) {
+      word = this.state.word.original;
+      correct_count = this.state.word.correct_count;
+      incorrect_count = this.state.word.incorrect_count;
+    }
+
+    if (this.context.language) {
+      total_score = this.context.language.total_score;
+    }
+
     return (
       <>
         <section>
           <h2>Translate the word:</h2>
-          <div>Bonjour</div>
+          <div>{word}</div>
           <form onSubmit={e => this.handleSubmit(e)}>
             <label className="Label" htmlFor='guess'>What's the translation for this word?</label>
             <input type="text" id="guess" value={this.state.guess} onChange={e => this.handleChange(e.target.value)}></input>
@@ -80,10 +96,10 @@ class LearningRoute extends Component {
           </form>
         </section>
         <section>
-          <h3>Your total score is: 5000</h3>
+          <h3>Your total score is: {total_score}</h3>
           <p>
-            You have answered this word correctly 123 times.
-            You have answered this word incorrectly 123 times.
+            You have answered this word correctly {correct_count} times.
+            You have answered this word incorrectly {incorrect_count} times.
           </p>
         </section>
       </>
