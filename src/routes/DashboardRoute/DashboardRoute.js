@@ -41,7 +41,6 @@ class DashboardRoute extends Component {
     let totalScore = 0;
     let words = [];
 
-    console.log(this.state.words)
     if (this.state.language) {
       languageName = this.state.language.name;
       totalScore = this.state.language.total_score;
@@ -82,7 +81,6 @@ class DashboardRoute extends Component {
             <div className="grid-icons"><FontAwesomeIcon icon={faCheck}/><FontAwesomeIcon icon={faTimes}/></div>
           </div>
           <div className="dashboard-grid">
-            {console.log(words)}
             {words.map(word =>
               <React.Fragment key={word.key}>
                 <span>{word.original}</span>
