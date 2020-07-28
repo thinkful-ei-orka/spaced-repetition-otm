@@ -7,22 +7,30 @@ class LearningRoute extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      word: ''
+      original: '',
+      // is the translation pulled upon guessing or on pulling the word?
+      translation: '',
+      // is next important?
+      // next: null
+      correct_count: null,
+      incorrect_count: null,
+      totalScore: null,
+      guess: '',
     }
   }
 
   handleChange = (value) => {
-    this.setState({word: value});
+    this.setState({guess: value});
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
 
     let guess = {
-      word: this.state.word
+      guess: this.state.guess
     }
 
-    fetch(`${config.API_ENDPOINT}/api/language/guess`, {
+    fetch(`${config.API_ENDPOINT}/language/guess`, {
       method: 'POST',
       headers: {
         'authorization': `bearer ${TokenService.getAuthToken()}`,
@@ -31,17 +39,31 @@ class LearningRoute extends Component {
       },
       body: JSON.stringify(guess),
     })
-      .then(res => console.log(res))
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      .then(json => {
+        console.log(json);
+      })
       .catch(e => console.log(e))
   }
 
   componentDidMount() {
-    fetch(`${config.API_ENDPOINT}/api/language/head`, {
+    fetch(`${config.API_ENDPOINT}/language/head`, {
       headers: {
         'authorization': `bearer ${TokenService.getAuthToken()}`,
       },
     })
-      .then(res => console.log(res))
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      .then(json => {
+        console.log(json);
+      })
       .catch(e => console.log(e));
   }
 
@@ -53,7 +75,7 @@ class LearningRoute extends Component {
           <div>Bonjour</div>
           <form onSubmit={e => this.handleSubmit(e)}>
             <label className="Label" htmlFor='guess'>What's the translation for this word?</label>
-            <input type="text" id="guess" value={this.state.word} onChange={e => this.handleChange(e.target.value)}></input>
+            <input type="text" id="guess" value={this.state.guess} onChange={e => this.handleChange(e.target.value)}></input>
             <button type="submit">Submit your answer</button>
           </form>
         </section>
