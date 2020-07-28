@@ -65,6 +65,8 @@ class DashboardRoute extends Component {
       })
     }
 
+    console.log(this.state);
+
     return (
       <>
         <section className="dashboard-header">

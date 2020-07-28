@@ -7,14 +7,7 @@ class LearningRoute extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      wordId: null,
-      original: '',
-      // is the translation pulled upon guessing or on pulling the word?
-      translation: '',
-      // is next important?
-      // next: null
-      correct_count: null,
-      incorrect_count: null,
+      word: null,
       totalScore: null,
       guess: '',
     }
@@ -65,7 +58,7 @@ class LearningRoute extends Component {
         }
       })
       .then(json => {
-        console.log(json);
+        this.setState({word: json.word});
       })
       .catch(e => console.log(e));
   }
