@@ -7,6 +7,7 @@ class LearningRoute extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      wordId: null,
       original: '',
       // is the translation pulled upon guessing or on pulling the word?
       translation: '',
@@ -27,15 +28,17 @@ class LearningRoute extends Component {
     e.preventDefault();
 
     let guess = {
+      wordId: this.state.wordId,
       guess: this.state.guess
     }
+
+    console.log(guess);
 
     fetch(`${config.API_ENDPOINT}/language/guess`, {
       method: 'POST',
       headers: {
         'authorization': `bearer ${TokenService.getAuthToken()}`,
         'content-type': 'application/json',
-
       },
       body: JSON.stringify(guess),
     })

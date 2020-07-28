@@ -4,7 +4,7 @@ import config from '../../config';
 import TokenService from '../../services/token-service';
 import './Dashboard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faCheckCircle, faTimes, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 class DashboardRoute extends Component {
   constructor(props) {
