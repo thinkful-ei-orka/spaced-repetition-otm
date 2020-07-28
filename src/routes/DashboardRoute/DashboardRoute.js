@@ -4,7 +4,7 @@ import config from '../../config';
 import TokenService from '../../services/token-service';
 import './Dashboard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faCheckCircle, faTimes, faTimesCircle  } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faCheckCircle, faTimes, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 class DashboardRoute extends Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class DashboardRoute extends Component {
     }
   }
 
-  
+
   componentDidMount() {
     fetch(`${config.API_ENDPOINT}/language`, {
       headers: {
@@ -41,7 +41,7 @@ class DashboardRoute extends Component {
     let totalScore = 0;
     let words = [];
 
-
+    console.log(this.state.words)
     if (this.state.language) {
       languageName = this.state.language.name;
       totalScore = this.state.language.total_score;
@@ -51,11 +51,17 @@ class DashboardRoute extends Component {
     if (this.state.words) {
       this.state.words.forEach((word, i) => {
         words.push(
-          <div key={i}>
-            <div>{word.original}</div>
-            <div>{word.correct_count}</div>
-            <div>{word.incorrect_count}</div>
-          </div>
+          {
+            key: word.id,
+            original: word.original,
+            correct_count: word.correct_count,
+            incorrect_count: word.incorrect_count
+          }
+          // <div key={word.id}>
+          //   <div>{word.original}</div>
+          //   <div>{word.correct_count}</div>
+          //   <div>{word.incorrect_count}</div>
+          // </div>
         )
       })
     }
@@ -64,18 +70,26 @@ class DashboardRoute extends Component {
       <>
         <section className="dashboard-header">
           <h2>{languageName}</h2>
-          <div>Total Score: {totalScore}</div>
-          <Link to="/learn">Start Practicing</Link>
+          <h4>Total Score: {totalScore}</h4>
         </section>
-        <section>
-          <div>
-            <div>Words to practice</div>
+        <div className="start-practicing">
+          <button className="start-practicing-btn"><Link className="start-practicing-link" to="/learn">Start Practicing</Link></button>
+        </div>
+        <section className="dashboard-grid-wrapper">
+          <div className="grid-header">
+            <div className="words-to-practice">Words to practice</div>
             {/* Choose the plain or circle icon */}
-            <div><FontAwesomeIcon icon={faCheck} /><FontAwesomeIcon icon={faCheckCircle} /></div>
-            <div><FontAwesomeIcon icon={faTimes} /><FontAwesomeIcon icon={faTimesCircle} /></div>
+            <div className="grid-icons"><FontAwesomeIcon icon={faCheck}/><FontAwesomeIcon icon={faTimes}/></div>
           </div>
-          <div>
-            {words}
+          <div className="dashboard-grid">
+            {console.log(words)}
+            {words.map(word =>
+              <React.Fragment key={word.key}>
+                <span>{word.original}</span>
+                <span>{word.correct_count}</span>
+                <span>{word.incorrect_count}</span>
+              </React.Fragment>
+            )}
           </div>
         </section>
       </>
