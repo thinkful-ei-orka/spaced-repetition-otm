@@ -18,7 +18,7 @@ class LoginForm extends Component {
   firstInput = React.createRef()
 
   handleSubmit = ev => {
-    this.setState({ laoding: true })
+    this.setState({ loading: true })
     ev.preventDefault()
     const { username, password } = ev.target
 
@@ -64,7 +64,7 @@ class LoginForm extends Component {
             name='username'
             required
         />
-        
+
           <Label htmlFor='login-password-input'>
             Password
           </Label>
