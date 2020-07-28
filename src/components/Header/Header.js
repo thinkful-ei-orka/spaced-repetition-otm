@@ -63,7 +63,7 @@ const Header = () => {
     <header className="header">
       <h3>
         <Link className="h1" to='/'>
-          Spaced repetition
+          Spaced Repetition
             </Link>
       </h3>
       {TokenService.hasAuthToken()

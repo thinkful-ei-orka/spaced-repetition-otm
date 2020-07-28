@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import config from '../../config';
 import TokenService from '../../services/token-service';
-
+import './Dashboard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faCheckCircle, faTimes, faTimesCircle  } from '@fortawesome/free-solid-svg-icons';
 
@@ -15,6 +15,7 @@ class DashboardRoute extends Component {
     }
   }
 
+  
   componentDidMount() {
     fetch(`${config.API_ENDPOINT}/language`, {
       headers: {
@@ -40,9 +41,11 @@ class DashboardRoute extends Component {
     let totalScore = 0;
     let words = [];
 
+
     if (this.state.language) {
       languageName = this.state.language.name;
       totalScore = this.state.language.total_score;
+
     }
 
     if (this.state.words) {
@@ -59,7 +62,7 @@ class DashboardRoute extends Component {
 
     return (
       <>
-        <section>
+        <section className="dashboard-header">
           <h2>{languageName}</h2>
           <div>Total Score: {totalScore}</div>
           <Link to="/learn">Start Practicing</Link>
