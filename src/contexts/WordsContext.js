@@ -20,10 +20,6 @@ export class WordsProvider extends Component {
     }
   }
 
-  // setContext = (newContext) => {
-  //   this.setState(newContext)
-  // }
-
   updateContext = () => {
     fetch(`${config.API_ENDPOINT}/language`, {
       headers: {
