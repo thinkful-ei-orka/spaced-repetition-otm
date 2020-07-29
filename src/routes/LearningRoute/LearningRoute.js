@@ -44,6 +44,8 @@ class LearningRoute extends Component {
       })
       .then(json => {
         console.log(json);
+        // uncomment this after this works
+        // this.context.updateContext();
       })
       .catch(e => console.log(e))
   }
