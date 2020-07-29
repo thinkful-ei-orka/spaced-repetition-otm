@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import config from '../../config';
 import TokenService from '../../services/token-service';
+import './LearningRoute.css';
 
 
 class LearningRoute extends Component {
@@ -69,9 +70,9 @@ class LearningRoute extends Component {
 
   render() {
     return (
-      <>
-        <section>
-          <h2>Translate the word:</h2>
+      <div className="learning-route-wrapper">
+        <section className="learning-header">
+          <h2 className="learning-h2">Translate the word:</h2>
           <div>Bonjour</div>
           <form onSubmit={e => this.handleSubmit(e)}>
             <label className="Label" htmlFor='guess'>What's the translation for this word?</label>
@@ -82,11 +83,11 @@ class LearningRoute extends Component {
         <section>
           <h3>Your total score is: 5000</h3>
           <p>
-            You have answered this word correctly 123 times.
+            You have answered this word correctly 123 times.<br/>
             You have answered this word incorrectly 123 times.
           </p>
         </section>
-      </>
+      </div>
     );
   }
 }

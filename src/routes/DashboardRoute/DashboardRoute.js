@@ -73,13 +73,13 @@ class DashboardRoute extends Component {
           <h4>Total Score: {totalScore}</h4>
         </section>
         <div className="start-practicing">
-          <button className="start-practicing-btn"><Link className="start-practicing-link" to="/learn">Start Practicing</Link></button>
+          <Link className="start-practicing-link" to="/learn"><button className="start-practicing-btn">Start Practicing</button></Link>
         </div>
         <section className="dashboard-grid-wrapper">
           <div className="grid-header">
             <div className="words-to-practice">Words to practice</div>
             {/* Choose the plain or circle icon */}
-            <div className="grid-icons"><FontAwesomeIcon icon={faCheck}/><FontAwesomeIcon icon={faTimes}/></div>
+            <div className="grid-icons"><FontAwesomeIcon icon={faCheck} /><FontAwesomeIcon icon={faTimes} /></div>
           </div>
           <div className="dashboard-grid">
             {console.log(words)}
