@@ -23,8 +23,6 @@ class DashboardRoute extends Component {
       totalScore = this.context.language.total_score;
     }
 
-    console.log(this.context);
-
     if (this.context.words) {
       this.context.words.forEach((word, i) => {
         words.push(
@@ -42,8 +40,6 @@ class DashboardRoute extends Component {
         )
       })
     }
-
-    console.log(this.context);
 
     return (
       <>

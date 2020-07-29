@@ -24,7 +24,7 @@ class LearningRoute extends Component {
     e.preventDefault();
 
     let guess = {
-      wordId: this.state.wordId,
+      wordId: this.state.word.id,
       guess: this.state.guess
     }
 
@@ -98,7 +98,7 @@ class LearningRoute extends Component {
             <button className="learning-btn" type="submit">Submit your answer</button>
           </form>
         </section>
-        <section className="score-feedback"> 
+        <section className="score-feedback">
           <h3>Your total score is: {total_score}</h3>
           <p>
             You have answered this word correctly {correct_count} times.<br/> <br/>
@@ -106,7 +106,7 @@ class LearningRoute extends Component {
           </p>
           <Link className="exit-link" to="/"><button className="exit-btn">Exit</button></Link>
         </section>
-        
+
       </div>
     );
   }
