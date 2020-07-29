@@ -19,6 +19,10 @@
     align-items: center;
 }
 
+.learning-form label {
+    font-size: 18px;
+}
+
 .learning-btn {
     background-color: #6200EA;
     border: 0;
@@ -47,3 +51,27 @@
 .score-feedback h3 {
     font-size: 25px;
 }
+
+
+
+.exit-btn {
+    background-color: #6200EA;
+    border: 0;
+    border-radius: 3px;
+    width: 15rem;
+    height: 2.2rem;
+    margin-bottom: 20px;
+    color: white;
+    font-size: 15px;
+}
+
+
+.word-to-guess {
+    animation: color-change 5s infinite;
+  }
+  
+  @keyframes color-change {
+    0% { color: #001489; }
+    50% { color: #EF3340 ; }
+    100% { color: #001489; }
+  }

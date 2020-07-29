@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import config from '../../config';
 import TokenService from '../../services/token-service';
 import './LearningRoute.css';
-
+import { Link } from 'react-router-dom';
 import WordsContext from '../../contexts/WordsContext';
 
 class LearningRoute extends Component {
@@ -104,7 +104,9 @@ class LearningRoute extends Component {
             You have answered this word correctly {correct_count} times.<br/> <br/>
             You have answered this word incorrectly {incorrect_count} times.
           </p>
+          <Link className="exit-link" to="/"><button className="exit-btn">Exit</button></Link>
         </section>
+        
       </div>
     );
   }
