@@ -18,11 +18,10 @@ class LoginForm extends Component {
   firstInput = React.createRef()
 
   handleSubmit = ev => {
-    this.setState({ laoding: true })
     ev.preventDefault()
     const { username, password } = ev.target
 
-    this.setState({ error: null })
+    this.setState({ error: null, loading: true })
 
     AuthApiService.postLogin({
       username: username.value,
@@ -35,7 +34,7 @@ class LoginForm extends Component {
         this.props.onLoginSuccess()
       })
       .catch(res => {
-        this.setState({ error: res.error, laoding: false })
+        this.setState({ error: res.error, loading: false })
       })
   }
 
@@ -64,7 +63,7 @@ class LoginForm extends Component {
             name='username'
             required
         />
-        
+
           <Label htmlFor='login-password-input'>
             Password
           </Label>

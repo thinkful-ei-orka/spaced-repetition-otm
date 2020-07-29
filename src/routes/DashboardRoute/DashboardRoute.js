@@ -1,39 +1,16 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import config from '../../config';
-import TokenService from '../../services/token-service';
 import './Dashboard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faCheckCircle, faTimes, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
+
+import WordsContext from '../../contexts/WordsContext';
 
 class DashboardRoute extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      language: null,
-      words: null
-    }
-  }
-
+  static contextType = WordsContext;
 
   componentDidMount() {
-    fetch(`${config.API_ENDPOINT}/language`, {
-      headers: {
-        'authorization': `bearer ${TokenService.getAuthToken()}`,
-      },
-    })
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
-      })
-      .then(json => {
-        this.setState({
-          language: json.language,
-          words: json.words
-        })
-      })
-      .catch(e => console.log(e));
+    this.context.updateContext();
   }
 
   render() {
@@ -41,15 +18,15 @@ class DashboardRoute extends Component {
     let totalScore = 0;
     let words = [];
 
-    console.log(this.state.words)
-    if (this.state.language) {
-      languageName = this.state.language.name;
-      totalScore = this.state.language.total_score;
-
+    if (this.context.language) {
+      languageName = this.context.language.name;
+      totalScore = this.context.language.total_score;
     }
 
-    if (this.state.words) {
-      this.state.words.forEach((word, i) => {
+    console.log(this.context);
+
+    if (this.context.words) {
+      this.context.words.forEach((word, i) => {
         words.push(
           {
             key: word.id,
@@ -65,6 +42,8 @@ class DashboardRoute extends Component {
         )
       })
     }
+
+    console.log(this.context);
 
     return (
       <>
@@ -82,7 +61,6 @@ class DashboardRoute extends Component {
             <div className="grid-icons"><FontAwesomeIcon icon={faCheck} /><FontAwesomeIcon icon={faTimes} /></div>
           </div>
           <div className="dashboard-grid">
-            {console.log(words)}
             {words.map(word =>
               <React.Fragment key={word.key}>
                 <span>{word.original}</span>
