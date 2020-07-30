@@ -48,6 +48,10 @@
     margin-left: 10px;
 }
 
+.score-feedback span {
+    color: red;
+}
+
 .score-feedback h3 {
     font-size: 25px;
 }
