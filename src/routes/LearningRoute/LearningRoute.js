@@ -8,9 +8,13 @@ class LearningRoute extends Component {
 
   static contextType = GuessWordContext;
 
+  componentDidMount() {
+    this.context.updateLearningWord();
+    // resets the guess to empty
+    this.context.handleChange('');
+  }
 
   render() {
-    console.log(this.context.word)
     let word = '';
     let correct_count;
     let incorrect_count;
@@ -26,7 +30,6 @@ class LearningRoute extends Component {
     if (this.context.language) {
       total_score = this.context.language.total_score;
     }
-
 
     return (
       <div>

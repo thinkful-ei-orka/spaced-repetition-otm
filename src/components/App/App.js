@@ -33,6 +33,10 @@ class App extends Component {
   componentDidMount() {
     this.context.updateContext();
 
+    // this.updateLearningWord();
+  }
+
+  updateLearningWord = () => {
     fetch(`${config.API_ENDPOINT}/language/head`, {
       headers: {
         'authorization': `bearer ${TokenService.getAuthToken()}`,
@@ -45,7 +49,6 @@ class App extends Component {
       })
       .then(json => {
         this.setState({ word: json.word });
-        console.log(this.state);
       })
       .catch(e => console.log(e));
   }
@@ -65,8 +68,6 @@ class App extends Component {
       guess: this.state.guess
     }
 
-    console.log(guess);
-
     fetch(`${config.API_ENDPOINT}/language/guess`, {
       method: 'POST',
       headers: {
@@ -81,18 +82,26 @@ class App extends Component {
         }
       })
       .then(json => {
-        console.log(json);
-        this.context.updateContext();
-
-        console.log(this.state.word.translation)
-        console.log(this.props.history)
-        console.log(this.state.guess.toLowerCase())
         if (this.state.guess.toLowerCase() === this.state.word.translation) {
           this.props.history.push('/correct')
         }
         else {
           this.props.history.push('/incorrect')
         }
+
+        let wordUpdate = {
+          ...this.state.word,
+          correct_count: json.wordUpdate.correct_count,
+          incorrect_count: json.wordUpdate.incorrect_count,
+          memory_value: json.wordUpdate.memory_value,
+          next: json.wordUpdate.next
+        }
+
+        this.setState({
+          word: wordUpdate
+        });
+
+        this.context.updateContext();
       })
       .catch(e => console.log(e))
   }
@@ -109,6 +118,7 @@ class App extends Component {
           guess: this.state.guess,
           handleChange: this.handleChange,
           handleSubmit: this.handleSubmit,
+          updateLearningWord: this.updateLearningWord,
           language: language,
           updateContext: this.context.updateContext
         }}
@@ -132,11 +142,11 @@ class App extends Component {
             <PrivateRoute
               path={'/correct'}
               component={CorrectPage}
-            />  
+            />
              <PrivateRoute
               path={'/incorrect'}
               component={IncorrectPage}
-            />  
+            />
             <PublicOnlyRoute
               path={'/register'}
               component={RegistrationRoute}
@@ -149,7 +159,7 @@ class App extends Component {
             <Route
               component={NotFoundRoute}
             />
-            
+
           </Switch>
         </main>
         </div>
