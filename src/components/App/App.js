@@ -9,6 +9,7 @@ import DashboardRoute from '../../routes/DashboardRoute/DashboardRoute'
 import LearningRoute from '../../routes/LearningRoute/LearningRoute'
 import NotFoundRoute from '../../routes/NotFoundRoute/NotFoundRoute'
 import './App.css'
+import CorrectPage from '../../routes/LearningRoute/CorrectPage'
 
 export default class App extends Component {
   state = { hasError: false }
@@ -48,6 +49,7 @@ export default class App extends Component {
             <Route
               component={NotFoundRoute}
             />
+            <Route exact path={'/correct'} component={CorrectPage} />
           </Switch>
         </main>
       </div>

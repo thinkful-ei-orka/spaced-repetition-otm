@@ -4,12 +4,13 @@ import TokenService from '../../services/token-service';
 import './LearningRoute.css';
 import { Link } from 'react-router-dom';
 import WordsContext from '../../contexts/WordsContext';
+import CorrectPage from './CorrectPage';
 
 class LearningRoute extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      word: null,
+      word: {},
       guess: '',
     }
   }
@@ -43,10 +44,16 @@ class LearningRoute extends Component {
           return res.json();
         }
       })
-      .then(json => {
+      .then(json => { 
         console.log(json);
-        // uncomment this after this works
-        // this.context.updateContext();
+        this.context.updateContext();
+
+        console.log(this.state.word.translation)
+        console.log(this.props.history)
+        console.log(this.state.guess)
+        if (this.state.guess === this.state.word.translation) {
+          this.props.history.push('/correct')
+        }
       })
       .catch(e => console.log(e))
   }
@@ -72,10 +79,13 @@ class LearningRoute extends Component {
   }
 
   render() {
+    console.log(this.state.word)
     let word = '';
     let correct_count;
     let incorrect_count;
     let total_score;
+    let translation = this.state.word.translation;
+   
 
     if (this.state.word) {
       word = this.state.word.original;
@@ -86,6 +96,8 @@ class LearningRoute extends Component {
     if (this.context.language) {
       total_score = this.context.language.total_score;
     }
+
+    
 
     return (
       <div>
