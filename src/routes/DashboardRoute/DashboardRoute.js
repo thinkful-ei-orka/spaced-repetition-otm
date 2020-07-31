@@ -42,30 +42,31 @@ class DashboardRoute extends Component {
     }
 
     return (
-      <>
+      <section>
         <section className="dashboard-header">
           <h2>{languageName}</h2>
-          <h4>Total Score: {totalScore}</h4>
+          <h4>Total correct answers: {totalScore}</h4>
         </section>
         <div className="start-practicing">
           <Link className="start-practicing-link" to="/learn"><button className="start-practicing-btn">Start Practicing</button></Link>
         </div>
         <section className="dashboard-grid-wrapper">
           <div className="grid-header">
-            <div className="words-to-practice">Words to practice</div>
+            <h3 className="words-to-practice">Words to practice</h3>
+            {/* Choose the plain or circle icon */}
             <div className="grid-icons"><FontAwesomeIcon icon={faCheck} /><FontAwesomeIcon icon={faTimes} /></div>
           </div>
           <div className="dashboard-grid">
             {words.map(word =>
               <React.Fragment key={word.key}>
-                <span>{word.original}</span>
-                <span>{word.correct_count}</span>
-                <span>{word.incorrect_count}</span>
+                <li><h4>{word.original}</h4></li>
+                <li>{word.correct_count}</li>
+                <li>{word.incorrect_count}</li>
               </React.Fragment>
             )}
           </div>
         </section>
-      </>
+      </section>
     );
   }
 }
