@@ -1,16 +1,16 @@
-import React, { Component } from 'react'
-import { Route, Switch, withRouter } from 'react-router-dom'
-import Header from '../Header/Header'
-import PrivateRoute from '../PrivateRoute/PrivateRoute'
-import PublicOnlyRoute from '../PublicOnlyRoute/PublicOnlyRoute'
-import RegistrationRoute from '../../routes/RegistrationRoute/RegistrationRoute'
-import LoginRoute from '../../routes/LoginRoute/LoginRoute'
-import DashboardRoute from '../../routes/DashboardRoute/DashboardRoute'
-import LearningRoute from '../../routes/LearningRoute/LearningRoute'
-import NotFoundRoute from '../../routes/NotFoundRoute/NotFoundRoute'
-import './App.css'
-import CorrectPage from '../../routes/LearningRoute/CorrectPage'
-import IncorrectPage from '../../routes/LearningRoute/IncorrectPage'
+import React, { Component } from 'react';
+import { Route, Switch, withRouter } from 'react-router-dom';
+import Header from '../Header/Header';
+import PrivateRoute from '../PrivateRoute/PrivateRoute';
+import PublicOnlyRoute from '../PublicOnlyRoute/PublicOnlyRoute';
+import RegistrationRoute from '../../routes/RegistrationRoute/RegistrationRoute';
+import LoginRoute from '../../routes/LoginRoute/LoginRoute';
+import DashboardRoute from '../../routes/DashboardRoute/DashboardRoute';
+import LearningRoute from '../../routes/LearningRoute/LearningRoute';
+import NotFoundRoute from '../../routes/NotFoundRoute/NotFoundRoute';
+import './App.css';
+import CorrectPage from '../../routes/LearningRoute/CorrectPage';
+import IncorrectPage from '../../routes/LearningRoute/IncorrectPage';
 import config from '../../config';
 import TokenService from '../../services/token-service';
 import WordsContext from '../../contexts/WordsContext';
@@ -32,8 +32,6 @@ class App extends Component {
 
   componentDidMount() {
     this.context.updateContext();
-
-    // this.updateLearningWord();
   }
 
   updateLearningWord = () => {
