@@ -20,6 +20,9 @@
     border-bottom: 1px solid black;
     background-color: #708d81;
 }
+header, main {
+    padding: 0 15px;
+}
 
 .icon {
     color: white;
@@ -72,14 +75,14 @@
 
 
 @media screen and (min-width: 680px) {
-   
+
 
 
     .icon {
         display: none;
     }
 
-  
+
     .nav-links.hideMenu {
         display: flex;
         flex-direction: row;

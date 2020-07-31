@@ -2,11 +2,11 @@ import jwt from 'jsonwebtoken'
 
 export function makeLoginToken() {
   const loginUser = {
-    user_id: 123,
-    name: 'Test name of user',
+    user_id: 1,
+    name: 'Dunder Mifflin Admin',
   }
-  return jwt.sign(loginUser, 'test-secret', {
-    subject: 'test-username',
+  return jwt.sign(loginUser, 'spaced-rep-secret', {
+    subject: 'admin',
     expiresIn: '2m',
     algorithm: 'HS256',
   })
