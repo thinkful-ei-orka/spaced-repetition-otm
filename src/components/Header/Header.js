@@ -28,12 +28,13 @@ const Header = () => {
             to='/login'>
             Logout
             </Link>
-        </nav>
-        <Link
+            <Link
             className="navlink user-name"
             to="#">
             {context.user.name}
           </Link>
+        </nav>
+       
         <div className="icon">
           {!show ? <GiHamburgerMenu onClick={(e) => setShow(!show)} /> : <div onClick={(e) => setShow(!show)}>X</div>}
         </div>
