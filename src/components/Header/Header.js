@@ -20,25 +20,24 @@ const Header = () => {
 
   function renderLogoutLink() {
     return (
-      <nav>
-        <div className={nav_class}>
-          <Link
-            className="navlink user-name"
-            to="#">
-            {context.user.name}
-          </Link>
+      <header>
+        <nav className={nav_class}>
           <Link
             className="navlink"
             onClick={handleLogoutClick}
             to='/login'>
             Logout
             </Link>
-
-        </div>
+        </nav>
+        <Link
+            className="navlink user-name"
+            to="#">
+            {context.user.name}
+          </Link>
         <div className="icon">
           {!show ? <GiHamburgerMenu onClick={(e) => setShow(!show)} /> : <div onClick={(e) => setShow(!show)}>X</div>}
         </div>
-      </nav>
+      </header>
     )
   }
 

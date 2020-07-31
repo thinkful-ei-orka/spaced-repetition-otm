@@ -6,7 +6,7 @@ import '../../components/RegistrationForm/RegistrationForm.css'
 class RegistrationRoute extends Component {
   static defaultProps = {
     history: {
-      push: () => {},
+      push: () => { },
     },
   }
 
@@ -17,15 +17,18 @@ class RegistrationRoute extends Component {
 
   render() {
     return (
-      <section className="sign-up-wrapper">
-        <p>
-          Practice learning a language with the spaced repetition revision technique.
-        </p>
-        <h2>Sign up</h2>
-        <RegistrationForm
-          onRegistrationSuccess={this.handleRegistrationSuccess}
-        />
-      </section>
+      <>
+        <h1>
+          Spaced repetition
+        </h1>
+        <section className="sign-up-wrapper">
+          <p>Practice learning a language with the spaced repetition revision technique.</p>
+          <h2>Sign up</h2>
+          <RegistrationForm
+            onRegistrationSuccess={this.handleRegistrationSuccess}
+          />
+        </section>
+      </>
     );
   }
 }
