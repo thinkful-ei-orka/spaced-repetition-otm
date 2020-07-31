@@ -53,7 +53,6 @@ class DashboardRoute extends Component {
         <section className="dashboard-grid-wrapper">
           <div className="grid-header">
             <div className="words-to-practice">Words to practice</div>
-            {/* Choose the plain or circle icon */}
             <div className="grid-icons"><FontAwesomeIcon icon={faCheck} /><FontAwesomeIcon icon={faTimes} /></div>
           </div>
           <div className="dashboard-grid">

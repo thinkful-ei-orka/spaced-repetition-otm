@@ -33,7 +33,6 @@ const Header = () => {
             to='/login'>
             Logout
             </Link>
-
         </div>
         <div className="icon">
           {!show ? <GiHamburgerMenu onClick={(e) => setShow(!show)} /> : <div onClick={(e) => setShow(!show)}>X</div>}
