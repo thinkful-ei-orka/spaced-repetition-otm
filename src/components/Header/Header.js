@@ -28,12 +28,13 @@ const Header = () => {
             to='/login'>
             Logout
             </Link>
-        </nav>
-        <Link
+          <Link
             className="navlink user-name"
             to="#">
             {context.user.name}
           </Link>
+        </nav>
+
         <div className="icon">
           {!show ? <GiHamburgerMenu onClick={(e) => setShow(!show)} /> : <div onClick={(e) => setShow(!show)}>X</div>}
         </div>
@@ -43,18 +44,18 @@ const Header = () => {
 
   function renderLoginLink() {
     return (
-
-      <nav>
-        <div className={nav_class}>
-          <Link className="navlink" to='/login'>Login</Link>
-          {' '}
-          <Link className="navlink" to='/register'>Sign up</Link>
-        </div>
-        <div className="icon">
-          {!show ? <GiHamburgerMenu onClick={(e) => setShow(!show)} /> : <div onClick={(e) => setShow(!show)}>X</div>}
-        </div>
-      </nav>
-
+      <header>
+        <nav>
+          <div className={nav_class}>
+            <Link className="navlink" to='/login'>Login</Link>
+            {' '}
+            <Link className="navlink" to='/register'>Sign up</Link>
+          </div>
+          <div className="icon">
+            {!show ? <GiHamburgerMenu onClick={(e) => setShow(!show)} /> : <div onClick={(e) => setShow(!show)}>X</div>}
+          </div>
+        </nav>
+      </header>
     )
   }
 

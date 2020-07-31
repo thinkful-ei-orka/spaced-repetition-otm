@@ -46,6 +46,7 @@ class App extends Component {
         }
       })
       .then(json => {
+        console.log(json)
         this.setState({ word: json.word });
       })
       .catch(e => console.log(e));
