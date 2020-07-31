@@ -7,7 +7,7 @@ import './Header.css'
 import { GiHamburgerMenu } from 'react-icons/gi';
 
 const Header = () => {
-  const [show, setShow] = useState(false); //hook for conditionally controlling the navbar links depending on screen sizes. 
+  const [show, setShow] = useState(false); //hook for conditionally controlling the navbar links depending on screen sizes.
 
   const context = useContext(UserContext)
 

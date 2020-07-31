@@ -162,8 +162,8 @@ describe(`User story: Login`, function() {
 
     it(`stores token in localStorage and redirects to /`, () => {
       const loginUser = {
-        username: 'username',
-        password: 'password',
+        username: 'admin',
+        password: 'pass',
       }
       cy.visit('/login')
 
@@ -193,7 +193,7 @@ describe(`User story: Login`, function() {
       cy.login().visit('/')
 
       cy.get('header').within($header => {
-        cy.contains('Test name of user').should('exist')
+        cy.contains('Dunder Mifflin Admin').should('exist')
         cy.get('nav a')
           .should('have.length', 1)
           .and('have.text', 'Logout')
