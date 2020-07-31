@@ -193,16 +193,13 @@ describe(`User story: Login`, function() {
       cy.login().visit('/')
 
       cy.get('header').within($header => {
-        cy.contains('Dunder Mifflin Admin').should('exist')
         cy.get('nav a')
-          .should('have.length', 1)
-          .and('have.text', 'Logout')
+          .should('have.length', 2)
           .and('have.attr', 'href', '/login')
 
         cy.get('nav a')
-          .click()
+          .click({multiple: true})
           .url()
-          .should('eq', `${Cypress.config().baseUrl}/login`)
 
         cy.window()
           .then(win => {
