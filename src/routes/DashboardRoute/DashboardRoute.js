@@ -32,11 +32,6 @@ class DashboardRoute extends Component {
             correct_count: word.correct_count,
             incorrect_count: word.incorrect_count
           }
-          // <div key={word.id}>
-          //   <div>{word.original}</div>
-          //   <div>{word.correct_count}</div>
-          //   <div>{word.incorrect_count}</div>
-          // </div>
         )
       })
     }
@@ -53,7 +48,6 @@ class DashboardRoute extends Component {
         <section className="dashboard-grid-wrapper">
           <div className="grid-header">
             <h3 className="words-to-practice">Words to practice</h3>
-            {/* Choose the plain or circle icon */}
             <div className="grid-icons"><FontAwesomeIcon icon={faCheck} /><FontAwesomeIcon icon={faTimes} /></div>
           </div>
           <div className="dashboard-grid">

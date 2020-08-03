@@ -34,7 +34,7 @@ class App extends Component {
     this.context.updateContext();
   }
 
-  updateLearningWord = () => {
+  updateLearningWord = () => { //fetches the next word to learn
     fetch(`${config.API_ENDPOINT}/language/head`, {
       headers: {
         'authorization': `bearer ${TokenService.getAuthToken()}`,
