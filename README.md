@@ -9,7 +9,7 @@ This app is designed to teach users French by applying the spaced repetition alg
 React, Node.js, PostgreSQL
 
 ## Screenshots <br>
-<img src="./Screenshots/sign-up.jpg" width="300"> <img src="./Screenshots/dashboard.jpg" width="300"> <img src="./Screenshots/correct-page" width="300"> <img src="./Screenshots/incorrect-page" width="300">
+<img src="./Screenshots/sign-up.jpg" width="300"> <img src="./Screenshots/dashboard.jpg" width="300"> <img src="./Screenshots/learning-page.jpg" width="300"> <img src="./Screenshots/correct-page.jpg" width="300"> <img src="./Screenshots/incorrect-page.jpg" width="300">
 
 ## Contributors:
 ### Magdalena Painter
