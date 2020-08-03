@@ -1,4 +1,4 @@
-[Link to server repo]() <br> [Link to the live app]()
+[Link to server repo](https://github.com/thinkful-ei-orka/spaced-repetition-api-otm) <br> [Link to the live app](https://spaced-repetition-otm.vercel.app/register)
 
 # Spaced Repetition Learning
 
@@ -7,3 +7,11 @@ This app is designed to teach users French by applying the spaced repetition alg
 
 ## Tech/Frameworks Utilized:
 React, Node.js, PostgreSQL
+
+## Screenshots <br>
+<img src="./Screenshots/sign-up.jpg" width="300"> <img src="./Screenshots/dashboard.jpg" width="300"> <img src="./Screenshots/correct-page" width="300"> <img src="./Screenshots/incorrect-page" width="300">
+
+## Contributors:
+### Magdalena Painter
+### Orkun Ozekin
+### Taeil Kwak
