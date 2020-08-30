@@ -73,7 +73,6 @@ class App extends Component {
         'authorization': `bearer ${TokenService.getAuthToken()}`,
         'content-type': 'application/json',
       },
-      body: JSON.stringify(guess),
     })
       .then(res => {
         if (res.ok) {
@@ -154,11 +153,9 @@ class App extends Component {
               path={'/login'}
               component={LoginRoute}
             />
-            {/* <Route exact path={'/CorrectPage'} component={CorrectPage} /> */}
             <Route
               component={NotFoundRoute}
             />
-
           </Switch>
         </main>
         </div>

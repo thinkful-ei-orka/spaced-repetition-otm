@@ -19,7 +19,7 @@ class RegistrationRoute extends Component {
     return (
       <>
         <h1>
-          Spaced repetition
+          SpeakFast
         </h1>
         <section className="sign-up-wrapper">
           <p>Practice learning a language with the spaced repetition revision technique.</p>
